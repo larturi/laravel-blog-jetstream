@@ -8,8 +8,6 @@ Blog autoadministrable con Laravel 9, Jetstream, Sail y LTE Admin.
 
 ./vendor/bin/sail composer require laravel/jetstream
 
-./vendor/bin/sail jetstream:install     
-
 ./vendor/bin/sail php artisan jetstream:install livewire   
 
 npm install && npm run dev     
