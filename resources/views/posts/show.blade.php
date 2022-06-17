@@ -28,7 +28,7 @@
                         <li class="mb-4">
                             <a class="flex" href="{{ route('posts.show', $relacionado) }}" class="text-lg text-gray-500 hover:text-gray-700">
                                <img class="w-36 h-20 object-cover object-center" src="{{ Storage::url($relacionado->image->url) }}" alt="">
-                                <span class="ml-3 text-gray-600">{{ $relacionado->name }}</span>
+                               <span class="ml-3 text-gray-600 w-60">{{ $relacionado->name }}</span>
                             </a>
                         </li>
                     @endforeach
