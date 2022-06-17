@@ -4,7 +4,7 @@
            @foreach ($posts as $post)
             <article 
                 class="w-full h-80 bg-cover bg-center @if($loop->first) md:col-span-2 @endif"
-                style="background-image: url({{ Storage::url($post->image->url) }})"
+                style="background-image: url('{{Storage::url($post->image->url)}}')"
             >
                 <div class="w-full h-full px-8 flex flex-col justify-center">
                     <div>
@@ -14,7 +14,7 @@
                     </div>
 
                     <h1 class="text-4xl text-white leading-8 font-bold">
-                        <a href="">
+                        <a href="{{ route('posts.show', $post ) }}">
                             {{ $post->name }}
                         </a>
                     </h1>
