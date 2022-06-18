@@ -22,7 +22,16 @@ class TagFactory extends Factory
         return [
             'name' => $name,
             'slug' => Str::slug($name),
-            'color' => $this->faker->randomElement(['gray', 'indigo', 'teal', 'red']),
+            'color' => $this->faker->randomElement([
+                'lime', 
+                'cyan', 
+                'indigo', 
+                'yellow', 
+                'red',
+                'blue',
+                'pink',
+                'esmerald',
+            ]),
         ];
     }
 }
