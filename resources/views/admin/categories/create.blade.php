@@ -7,13 +7,40 @@
 @stop
 
 @section('content')
-    <p>Bienvenido al panel de administración</p>
-@stop
+    <div class="card">
+        <div class="card-body">
+            {!! Form::open(['route' => 'admin.categories.store']) !!}
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+                <div class="form-group">
+                    {!! Form::label('name', 'Nombre') !!}
+                    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el nombre de la categoría']) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('slug', 'Slug') !!}
+                    {!! Form::text('slug', null, ['class' => 'form-control', 'placeholder' => 'Slug de la categoría', 'readonly']) !!}
+                </div>
+
+                {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
+
+            {!! Form::close() !!}
+        </div>
+    </div>
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
-@stop
+
+    <script src="{{ asset('vendor/jquery-string-to-slug/jquery.stringToSlug.min.js') }}"></script>
+
+    <script>
+        $(document).ready( function() {
+            $("#name").stringToSlug({
+                setEvents: 'keyup keydown blur',
+                getPut: '#slug',
+                space: '-'
+            });
+        });
+    </script>
+
+@endsection
+
