@@ -6,16 +6,15 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Tag;
-
 class PostController extends Controller
 {
     public function index() {
-        $posts = Post::where('status', 1)->latest('id')->paginate(8);
+        $posts = Post::where('status', config('constants.STATUS_POST.PUBLISHED'))->latest('id')->paginate(8);
         return view('posts.index', compact('posts'));
     }
 
     public function show(Post $post) {
-        $relacionados = Post::where('status', 1)
+        $relacionados = Post::where('status', config('constants.STATUS_POST.PUBLISHED'))
                         ->where('category_id', '=', $post->category_id)
                         ->where('id', '!=', $post->id)
                         ->latest('id')->take(4)->get();
@@ -31,7 +30,7 @@ class PostController extends Controller
     }
 
     public function tag(Tag $tag) {
-        $posts = $tag->posts()->where('status', 1)->latest('id')->paginate(4);
+        $posts = $tag->posts()->where('status', config('constants.STATUS_POST.PUBLISHED'))->latest('id')->paginate(4);
         return view('posts.tag', compact('posts', 'tag'));
     }
 }

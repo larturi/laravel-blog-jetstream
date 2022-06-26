@@ -1,7 +1,7 @@
 @props(['post'])
 
 <article class="mb-8 bg-white shadow-lg rounded-lg overflow-hidden">
-    <img class="w-full h-72 object-cover object-center" src="{{ Storage::url($post->image->url ) }}" alt="">
+    <img class="w-full h-72 object-cover object-center" src="@if($post->image) {{Storage::url($post->image->url)}} @else {{config('constants.DEFAULT_IMAGE_POST')}} @endif" alt="">
 
     <div class="py-4 px-6">
         <h1 class="font-bold text-xl mb-2">
@@ -9,7 +9,7 @@
         </h1>
 
         <div class="text-gray-700 text-base">
-            {{ $post->extract }}
+            {!! $post->extract !!}
         </div>
     </div>
 

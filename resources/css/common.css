@@ -13,3 +13,46 @@
         @apply px-8;
     }
 }
+
+.bg-dark {
+    opacity: 0.9;
+    padding: 12px;
+    background: #191919;
+    width: fit-content;
+}
+
+.bg-blue-600 {
+    background: #2a6a8a;
+}
+
+.bg-esmerald-600 {
+    background: #1d5d53;
+}
+
+.bg-lime-600 {
+    background: #1d993e;
+}
+
+.bg-yellow-600 {
+    background: #9b810e;
+}
+
+.bg-cyan-600 {
+    background: rgb(17, 112, 112);
+}
+
+.bg-indigo-600 {
+    background: indigo;
+}
+
+.bg-red-600 {
+    background: red;
+}
+
+.bg-blue-600 {
+    background: blue;
+}
+
+.bg-pink-600 {
+    background: #901456;
+}
