@@ -72,7 +72,16 @@ class PostController extends Controller
             $url = Storage::put('posts', $request->file('file'));
 
             if($post->image) {
-                Storage::delete($post->image->url);
+
+                // Si son las imagenes default no las elimino
+                if($post->image->url != 'posts/post-default-1.jpeg' &&
+                    $post->image->url != 'posts/post-default-2.jpeg' &&
+                    $post->image->url != 'posts/post-default-3.jpeg' &&
+                    $post->image->url != 'posts/post-default-4.jpeg' &&
+                    $post->image->url != 'posts/post-default-5.jpeg') {
+                    Storage::delete($post->image->url);
+                }
+
                 $post->image->update([
                     'url' => $url
                 ]);
@@ -85,7 +94,7 @@ class PostController extends Controller
 
         // Update Tags
         if($request->tags) {
-            $post->tags()->attach($request->tags);
+            $post->tags()->sync($request->tags);
         }
 
         return redirect()->route('admin.posts.edit', $post)->with('info', 'El post fue actualizado con exito');
@@ -94,6 +103,7 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('admin.posts.index', $post)->with('info', 'El post fue eliminado con exito');
     }
 }
