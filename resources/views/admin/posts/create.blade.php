@@ -11,8 +11,6 @@
         <div class="card-body col-12 col-md-9">
             {!! Form::open(['route' => 'admin.posts.store', 'autocomplete' => 'off', 'files' => true]) !!}
 
-                {!! Form::hidden('user_id', auth()->user()->id) !!}
-
                 @include('admin.posts.partials.form')
 
                 {!! Form::submit('Crear Post', ['class' => 'btn btn-primary']) !!}
