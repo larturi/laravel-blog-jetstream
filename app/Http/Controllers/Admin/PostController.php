@@ -55,15 +55,18 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
+        $this->authorize('isAuthor', $post);
+
         $categories = Category::pluck('name', 'id');
         $tags = Tag::all();
         return view('admin.posts.edit', compact('post', 'categories', 'tags'));
-
     }
 
 
     public function update(PostRequest $request, Post $post)
     {
+        $this->authorize('isAuthor', $post);
+
         // Update Post
         $post->update($request->all());
 
@@ -103,6 +106,8 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
+        $this->authorize('isAuthor', $post);
+        
         $post->delete();
         return redirect()->route('admin.posts.index', $post)->with('info', 'El post fue eliminado con exito');
     }

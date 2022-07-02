@@ -9,11 +9,14 @@ use App\Models\Tag;
 class PostController extends Controller
 {
     public function index() {
-        $posts = Post::where('status', config('constants.STATUS_POST.PUBLISHED'))->latest('id')->paginate(8);
+        $posts = Post::where('status', config('constants.STATUS_POST.PUBLISHED'))
+            // ->where('user_id', 1)
+            ->latest('id')->paginate(8);
         return view('posts.index', compact('posts'));
     }
 
     public function show(Post $post) {
+        $this->authorize('isPublished', $post);
         $relacionados = Post::where('status', config('constants.STATUS_POST.PUBLISHED'))
                         ->where('category_id', '=', $post->category_id)
                         ->where('id', '!=', $post->id)
