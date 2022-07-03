@@ -24,14 +24,6 @@
                             <td>{{ $user->email }}</td>
                             <td class="d-flex">
                                 <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-primary btn-sm mr-2">Editar</a>
-                        
-                                <form action="{{ route('admin.users.destroy', $user) }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf()
-                                    <button class="btn btn-danger btn-sm" type="submit">
-                                        Eliminar
-                                    </button>
-                                </form>
                             </td>
                         </tr>
                     @endforeach
