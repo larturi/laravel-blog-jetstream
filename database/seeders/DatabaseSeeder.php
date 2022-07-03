@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
     {
         // Crea la carpeta posts para guardar las imagenes
         Storage::makeDirectory('public/posts');
+
+        // Crea Roles y Permisos
+        $this->call(RoleSeeder::class);
         // Crea los usuarios
         $this->call(UserSeeder::class);
         // Crea las categorias   
@@ -28,5 +31,6 @@ class DatabaseSeeder extends Seeder
         Tag::factory(8)->create();
         // Crea los posts
         $this->call(PostSeeder::class);
+        
     }
 }
