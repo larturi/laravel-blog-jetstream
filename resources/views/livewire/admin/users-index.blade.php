@@ -1,29 +1,31 @@
 <div class="card">
 
     <div class="card-header">
-        <input wire:model="search" type="text" class="form-control" placeholder="Buscar por nombre del Post...">
+        <input wire:model="search" type="text" class="form-control" placeholder="Buscar...">
     </div>
 
-    @if ($posts->count() > 0)
+    @if ($users->count() > 0)
         <div class="card-body">
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
+                        <th>Email</th>
                         <th></th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @foreach ($posts as $post)
+                    @foreach ($users as $user)
                         <tr>
-                            <td>{{ $post->id }}</td>
-                            <td>{{ $post->name }}</td>
+                            <td>{{ $user->id }}</td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
                             <td class="d-flex">
-                                <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-primary btn-sm mr-2">Editar</a>
+                                <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-primary btn-sm mr-2">Editar</a>
                         
-                                <form action="{{ route('admin.posts.destroy', $post) }}" method="POST">
+                                <form action="{{ route('admin.users.destroy', $user) }}" method="POST">
                                     @method('DELETE')
                                     @csrf()
                                     <button class="btn btn-danger btn-sm" type="submit">
@@ -38,7 +40,7 @@
         </div>
 
         <div class="card-footer d-flex justify-content-center">
-            {{ $posts->links() }}
+            {{ $users->links() }}
         </div>
     @else
         <div class="card-body">

@@ -252,6 +252,12 @@ return [
             'icon'        => 'fas fa-tachometer-alt fa-fw',
             'label_color' => 'success',
         ],
+        [
+            'text'        => 'Usuarios',
+            'route'       => 'admin.users.index',
+            'icon'        => 'fas fa-users fa-fw',
+            'label_color' => 'success',
+        ],
         ['header' => 'ADMINISTRACIÓN'],
         [
             'text' => 'Categorías',
