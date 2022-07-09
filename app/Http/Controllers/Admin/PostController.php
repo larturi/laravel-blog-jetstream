@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\Tag;
 use App\Http\Requests\PostRequest;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -49,6 +50,9 @@ class PostController extends Controller
         if($request->tags) {
             $post->tags()->attach($request->tags);
         }
+
+        // Eliminar cache
+        Cache::flush();
 
         return redirect()->route('admin.posts.edit', $post);
     }
@@ -99,6 +103,9 @@ class PostController extends Controller
         if($request->tags) {
             $post->tags()->sync($request->tags);
         }
+
+        // Eliminar cache
+        Cache::flush();
 
         return redirect()->route('admin.posts.edit', $post)->with('info', 'El post fue actualizado con exito');
     }
