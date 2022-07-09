@@ -227,20 +227,11 @@ return [
     'menu' => [
         // Navbar items:
         [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
-            'topnav_right' => true,
-        ],
-        [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
         ],
 
         // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
@@ -251,25 +242,28 @@ return [
             'route'       => 'admin.home',
             'icon'        => 'fas fa-tachometer-alt fa-fw',
             'label_color' => 'success',
+            'can'         => 'admin.home',
         ],
         [
             'text'        => 'Usuarios',
             'route'       => 'admin.users.index',
             'icon'        => 'fas fa-users fa-fw',
             'label_color' => 'success',
-        ],
-        ['header' => 'ADMINISTRACIÓN'],
-        [
-            'text' => 'Categorías',
-            'route'  => 'admin.categories.index',
-            'icon' => 'fab fa-fw fa-buffer',
-            'active' => ['admin/categories/*'],
+            'can'         => 'admin.users.index',
         ],
         [
-            'text' => 'Tags',
-            'route'  => 'admin.tags.index',
-            'icon' => 'far fa-fw fa-bookmark',
-            'active' => ['admin/tags/*'],
+            'text'        => 'Categorías',
+            'route'       => 'admin.categories.index',
+            'icon'        => 'fab fa-fw fa-buffer',
+            'active'      => ['admin/categories/*'],
+            'can'         => 'admin.categories.index',
+        ],
+        [
+            'text'        => 'Tags',
+            'route'       => 'admin.tags.index',
+            'icon'        => 'far fa-fw fa-bookmark',
+            'active'      => ['admin/tags/*'],
+            'can'         => 'admin.tags.index',
         ],
         
         
@@ -278,11 +272,13 @@ return [
             'text'       => 'Listado de Posts',
             'route'      => 'admin.posts.index',
             'icon'       => 'fas fa-fw fa-clipboard',
+            'can'        => 'admin.posts.index',
         ],
         [
             'text'       => 'Crear Post',
             'route'      => 'admin.posts.create',
             'icon'       => 'fas fa-fw fa-file',
+            'can'        => 'admin.posts.create',
         ],
     ],
 

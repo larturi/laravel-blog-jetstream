@@ -9,6 +9,14 @@ use App\Models\Tag;
 
 class TagController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware('can:admin.tags.index')->only('index');
+        $this->middleware('can:admin.tags.create')->only('create', 'store');
+        $this->middleware('can:admin.tags.edit')->only('edit', 'update');
+        $this->middleware('can:admin.tags.destroy')->only('destroy');
+    }
+
     public $colors = [
         'blue' => 'Blue',
         'cyan' => 'Cyan',
@@ -45,13 +53,6 @@ class TagController extends Controller
         return redirect()->route('admin.tags.edit', $tag)->with('info', 'Tag created successfully.');
     }
 
-    
-    public function show(Tag $tag)
-    {
-        return view('admin.tags.show', compact('tag'));
-    }
-
-    
     public function edit(Tag $tag)
     {
         return view('admin.tags.edit', ['colors' => $this->colors], compact('tag'));
